@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ${K8S_APP_NAME}
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ${K8S_APP_NAME}
