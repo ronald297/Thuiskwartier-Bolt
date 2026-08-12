@@ -1,0 +1,107 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      app_image: ${{ steps.vars.outputs.app_image }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compute image name
+        id: vars
+        shell: bash
+        run: |
+          repo_lc="$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')"
+          image_repo="ghcr.io/${repo_lc}/app"
+          app_image="${image_repo}:${GITHUB_SHA::7}"
+
+          echo "image_repo=${image_repo}" >> "$GITHUB_OUTPUT"
+          echo "app_image=${app_image}" >> "$GITHUB_OUTPUT"
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: |
+            ${{ steps.vars.outputs.app_image }}
+            ${{ steps.vars.outputs.image_repo }}:latest
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: build
+    environment: production
+    permissions:
+      contents: read
+    env:
+      APP_IMAGE: ${{ needs.build.outputs.app_image }}
+      KUBE_CONFIG_B64: ${{ secrets.KUBE_CONFIG_B64 }}
+      KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      K8S_NAMESPACE: ${{ vars.K8S_NAMESPACE }}
+      K8S_APP_NAME: ${{ vars.K8S_APP_NAME }}
+      K8S_DEPLOYMENT_NAME: ${{ vars.K8S_DEPLOYMENT_NAME }}
+      K8S_SERVICE_NAME: ${{ vars.K8S_SERVICE_NAME }}
+      INGRESS_HOST: ${{ vars.INGRESS_HOST }}
+      INGRESS_CLASS: ${{ vars.INGRESS_CLASS }}
+      INGRESS_TLS_SECRET: ${{ vars.INGRESS_TLS_SECRET }}
+      CERT_MANAGER_CLUSTER_ISSUER: ${{ vars.CERT_MANAGER_CLUSTER_ISSUER }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: v1.31.2
+
+      - name: Configure kubeconfig
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/kube"
+          kubeconfig_path="$RUNNER_TEMP/kube/config"
+
+          if [[ -n "${KUBE_CONFIG_B64:-}" ]]; then
+            printf '%s' "$KUBE_CONFIG_B64" | base64 --decode > "$kubeconfig_path"
+          elif [[ "${KUBE_CONFIG:-}" == apiVersion:* ]]; then
+            printf '%s\n' "$KUBE_CONFIG" > "$kubeconfig_path"
+          elif [[ -n "${KUBE_CONFIG:-}" ]]; then
+            printf '%s' "$KUBE_CONFIG" | base64 --decode > "$kubeconfig_path"
+          else
+            echo "Missing KUBE_CONFIG_B64 or KUBE_CONFIG secret." >&2
+            exit 1
+          fi
+
+          chmod 600 "$kubeconfig_path"
+          echo "KUBECONFIG=$kubeconfig_path" >> "$GITHUB_ENV"
+
+      - name: Verify Kubernetes access
+        run: |
+          kubectl config current-context
+          kubectl -n "${K8S_NAMESPACE:-default}" auth can-i get deployments
+
+      - name: Deploy to Kubernetes
+        run: sh scripts/deploy-k8s.sh

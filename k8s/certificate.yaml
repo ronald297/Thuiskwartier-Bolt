@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ${K8S_APP_NAME}-tls
+  labels:
+    app: ${K8S_APP_NAME}
+spec:
+  secretName: ${INGRESS_TLS_SECRET}
+  dnsNames:
+    - ${INGRESS_HOST}
+    - www.${INGRESS_HOST}
+  issuerRef:
+    kind: ClusterIssuer
+    name: ${CERT_MANAGER_CLUSTER_ISSUER}
