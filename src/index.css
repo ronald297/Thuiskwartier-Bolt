@@ -1,8 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root { font-family: 'DM Sans', sans-serif; color: #21372d; background: #f7f4ee; font-synthesis: none; } * { box-sizing: border-box; } html { scroll-behavior: smooth; } body { margin: 0; } a { color: inherit; text-decoration: none; }
-.nav { height: 82px; display: flex; align-items: center; gap: 32px; padding: 0 clamp(24px, 6vw, 96px); border-bottom: 1px solid #dbe0d5; } .brand { margin-right: auto; font-size: 22px; font-weight: 600; letter-spacing: -1.3px; } .brand span { font-family: 'Playfair Display', serif; font-weight: 500; } .nav-link { font-size: 14px; } .button { display: inline-flex; justify-content: center; align-items: center; gap: 22px; background: #244637; color: #fffdf8; border: 1px solid #244637; padding: 16px 20px; font: 500 14px 'DM Sans', sans-serif; cursor: pointer; transition: transform .2s, background .2s; } .button:hover { background: #376350; transform: translateY(-2px); } .button-small { padding: 11px 15px; font-size: 13px; }
-.hero { min-height: 600px; padding: clamp(56px, 9vw, 130px) clamp(24px, 10vw, 160px); display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 70px; overflow: hidden; } .eyebrow { font: 11px 'DM Mono', monospace; letter-spacing: .09em; text-transform: uppercase; color: #7a8c7d; margin: 0 0 20px; } h1, h2 { font: 500 clamp(47px, 5.4vw, 82px)/.99 'Playfair Display', serif; letter-spacing: -3px; margin: 0; } h1 em, h2 em { color: #d26d4b; } .intro { max-width: 420px; font-size: 17px; line-height: 1.65; margin: 29px 0 33px; color: #53665a; }
-.hero-art { position: relative; height: 410px; min-width: 430px; background: #dbe3d5; border-radius: 48% 48% 8px 8px; overflow: hidden; } .sun { position:absolute; width:130px; height:130px; border-radius:50%; background:#e9bd68; right:64px; top:49px; } .cloud { position:absolute; background:#f7f4ee; border-radius:50px; height:17px; width:65px; opacity:.8; } .cloud:after { content:''; position:absolute; background:#f7f4ee; border-radius:50%; height:26px; width:26px; top:-12px; left:18px; } .cloud-one{left:66px;top:82px}.cloud-two{right:34px;top:152px;transform:scale(.65)} .hill { position:absolute; width:130%; border-radius:50% 50% 0 0; left:-15%; } .hill-back{height:180px;bottom:85px;background:#a7bd9a}.hill-front{height:130px;bottom:0;background:#718d69}.house { position:absolute; width:142px; height:132px; left:50%; bottom:42px; transform:translateX(-50%); background:#f3e4c7; border:7px solid #385646; } .roof { position:absolute; width:0;height:0;border-left:94px solid transparent;border-right:94px solid transparent;border-bottom:83px solid #c9674e;left:-30px;top:-84px; } .chimney{position:absolute;width:21px;height:48px;background:#385646;right:17px;top:-64px}.door { position:absolute; bottom:0;left:47px;width:34px;height:65px;background:#385646; }.window { position:absolute; top:29px;left:21px;width:30px;height:30px;border:5px solid #385646;background:#e9bd68; }.tree{position:absolute;bottom:48px;width:13px;height:90px;background:#466949}.tree i{position:absolute;width:86px;height:86px;bottom:50px;left:-37px;border-radius:50%;background:#456f50;box-shadow:13px 22px 0 #456f50,-18px 27px 0 #456f50}.tree-left{left:73px}.tree-right{right:77px;transform:scale(.8)}
-.statement { padding: 104px 24px; background:#244637; color:#faf5eb; text-align:center; }.statement p { margin:0; font:500 clamp(32px,4vw,56px)/1.1 'Playfair Display',serif; letter-spacing:-1.8px; }.steps { display:grid; grid-template-columns: .9fr 1.1fr; gap:90px; padding: clamp(72px,10vw,145px) clamp(24px,10vw,160px); }.steps h2,.join h2 { font-size:clamp(38px,4.3vw,63px); }.step { border-top:1px solid #cdd5ca; padding:25px 0; display:grid; grid-template-columns:54px 1fr 20px; gap:12px; }.step span { font:11px 'DM Mono',monospace;color:#d26d4b;padding-top:5px; }.step h3 { margin:0 0 8px;font-size:18px;font-weight:600; }.step p { margin:0;max-width:380px;color:#637267;line-height:1.6;font-size:14px; }.step b { font-size:18px;font-weight:400; }.join { background:#e9d9c3; padding:clamp(72px,9vw,125px) clamp(24px,10vw,160px); }.join form { margin-top:38px; max-width:580px; }.join label { display:block;font-size:13px;margin-bottom:8px; }.email-row { display:flex; gap:10px; }.email-row input { min-width:0;flex:1;padding:15px;border:1px solid #9aab9c;background:#f9f5ed;font:14px 'DM Sans',sans-serif;color:#21372d; }.success { font-size:18px;color:#244637;margin-top:35px; } footer { display:flex;gap:26px;align-items:center;padding:29px clamp(24px,6vw,96px);font-size:12px;color:#637267; } footer p{margin:0} footer .brand{color:#21372d;font-size:19px;}
-@media (max-width: 720px) { .nav-link{display:none}.hero,.steps{grid-template-columns:1fr;gap:50px}.hero{padding-top:70px}.hero-art{min-width:0;height:330px}.steps{gap:55px}.email-row{flex-direction:column}.email-row .button{width:100%}footer{flex-wrap:wrap}.hero h1{letter-spacing:-2px} }
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans text-night bg-white;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+
+  ::selection {
+    @apply bg-turquoise-200 text-night;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-purple-800 text-white font-sans font-medium text-sm rounded-lg
+           hover:bg-purple-900 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-purple-200 text-purple-800 font-sans font-medium text-sm rounded-lg
+           hover:bg-purple-50 hover:border-purple-300 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 text-purple-800 font-sans font-medium text-sm rounded-lg
+           hover:bg-purple-50 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  }
+
+  .section-padding {
+    @apply px-5 sm:px-8 lg:px-16 xl:px-24;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+}

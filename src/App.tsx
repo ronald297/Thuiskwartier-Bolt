@@ -1,19 +1,70 @@
-import { FormEvent, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner';
 
-const steps = [
-  ['01', 'Vertel ons wie je bent', 'Een paar korte vragen geven ons een goed beeld van wat bij je past.'],
-  ['02', 'Ontdek jouw matches', 'Wij koppelen je aan buurten en woningen die aansluiten bij jouw leven.'],
-  ['03', 'Voel je thuis', 'Plan een bezichtiging en zet de volgende stap met vertrouwen.'],
-];
+import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
+import WerkwijzePage from './pages/WerkwijzePage';
+import OverPage from './pages/OverPage';
+import ShowroomPage from './pages/ShowroomPage';
+import PartnerprogrammaPage from './pages/PartnerprogrammaPage';
+import ProjectenPage from './pages/ProjectenPage';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import InspiratiePage from './pages/InspiratiePage';
+import InspirationDetailPage from './pages/InspirationDetailPage';
+import AfspraakPage from './pages/AfspraakPage';
+import ContactPage from './pages/ContactPage';
+import ServicePage from './pages/ServicePage';
+import NieuwbouwPage from './pages/NieuwbouwPage';
+import NieuwbouwUrkPage from './pages/NieuwbouwUrkPage';
+import RegioPage from './pages/RegioPage';
+import MerkenPage from './pages/MerkenPage';
+import PrivacyPage from './pages/PrivacyPage';
+import CookiePage from './pages/CookiePage';
+import BedanktPage from './pages/BedanktPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (email.trim()) setSubmitted(true);
-  }
-
-  return <main><nav className="nav" aria-label="Hoofdnavigatie"><a className="brand" href="#top" aria-label="Thuiskwartier, naar boven">thuis<span>kwartier</span></a><a className="nav-link" href="#hoe-het-werkt">Hoe het werkt</a><a className="button button-small" href="#start">Vind mijn plek <span aria-hidden="true">↗</span></a></nav><section className="hero" id="top"><div className="hero-copy"><p className="eyebrow">Wonen op jouw manier</p><h1>Een plek die<br /><em>bij je past.</em></h1><p className="intro">Thuiskwartier helpt je niet alleen een huis, maar vooral een thuis te vinden. In een buurt waar jouw leven klopt.</p><a className="button" href="#start">Ontdek jouw kwartier <span aria-hidden="true">↓</span></a></div><div className="hero-art" aria-label="Illustratie van een warm huis tussen bomen" role="img"><div className="sun" /><div className="cloud cloud-one" /><div className="cloud cloud-two" /><div className="hill hill-back" /><div className="hill hill-front" /><div className="tree tree-left"><i /></div><div className="tree tree-right"><i /></div><div className="house"><div className="roof" /><div className="chimney" /><div className="window" /><div className="door" /></div></div></section><section className="statement"><p>Een nieuw adres is pas het begin.<br />Wij helpen je landen.</p></section><section className="steps" id="hoe-het-werkt"><div><p className="eyebrow">Zo werkt Thuiskwartier</p><h2>Jouw zoektocht,<br /><em>persoonlijk gemaakt.</em></h2></div><div className="step-list">{steps.map(([number, title, text]) => <article className="step" key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div><b aria-hidden="true">↗</b></article>)}</div></section><section className="join" id="start"><p className="eyebrow">Blijf dichtbij</p><h2>Jouw thuis begint<br /><em>met een goed gesprek.</em></h2>{submitted ? <p className="success" role="status">Dank je! We houden je op de hoogte.</p> : <form onSubmit={handleSubmit}><label htmlFor="email">E-mailadres</label><div className="email-row"><input id="email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="jij@voorbeeld.nl" required /><button className="button" type="submit">Houd me op de hoogte <span aria-hidden="true">→</span></button></div></form>}</section><footer><a className="brand" href="#top">thuis<span>kwartier</span></a><p>© {new Date().getFullYear()} Thuiskwartier</p><a href="mailto:hello@thuiskwartier.nl">hello@thuiskwartier.nl</a></footer></main>;
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/keukens" element={<ProductPage />} />
+          <Route path="/badkamers" element={<ProductPage />} />
+          <Route path="/pvc-vloeren" element={<ProductPage />} />
+          <Route path="/tegels" element={<ProductPage />} />
+          <Route path="/maatwerkkasten" element={<ProductPage />} />
+          <Route path="/werkwijze" element={<WerkwijzePage />} />
+          <Route path="/over-thuiskwartier" element={<OverPage />} />
+          <Route path="/over-thuiskwartier/showroom-urk" element={<ShowroomPage />} />
+          <Route path="/partnerprogramma" element={<PartnerprogrammaPage />} />
+          <Route path="/projecten" element={<ProjectenPage />} />
+          <Route path="/projecten/:slug" element={<ProjectDetailPage />} />
+          <Route path="/inspiratie" element={<InspiratiePage />} />
+          <Route path="/inspiratie/:slug" element={<InspirationDetailPage />} />
+          <Route path="/afspraak-maken" element={<AfspraakPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/service" element={<ServicePage />} />
+          <Route path="/nieuwbouw" element={<NieuwbouwPage />} />
+          <Route path="/nieuwbouw/urk" element={<NieuwbouwUrkPage />} />
+          <Route path="/regio/:slug" element={<RegioPage />} />
+          <Route path="/merken" element={<MerkenPage />} />
+          <Route path="/privacyverklaring" element={<PrivacyPage />} />
+          <Route path="/cookieverklaring" element={<CookiePage />} />
+          <Route path="/bedankt-contact" element={<BedanktPage />} />
+          <Route path="/bedankt-partneraanvraag" element={<BedanktPage />} />
+          <Route path="/bedankt-serviceverzoek" element={<BedanktPage />} />
+          <Route path="/404" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+      <div className="pb-16 sm:pb-0">
+        <Footer />
+      </div>
+      <CookieBanner />
+    </div>
+  );
 }
