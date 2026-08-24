@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MessageCircle } from 'lucide-react';
 import PageMeta from '../components/PageMeta';
 import Breadcrumbs from '../components/Breadcrumbs';
 import CTASection from '../components/CTASection';
@@ -99,7 +99,25 @@ export default function OverPage() {
                 </div>
                 <h3 className="font-sans font-semibold text-purple-800">{member.name}</h3>
                 <p className="text-sm text-turquoise-600 mb-2">{member.role}</p>
-                <p className="text-sm text-softgray-600">{member.description}</p>
+                {(member.email || member.phone || member.whatsapp) && (
+                  <div className="flex items-center justify-center gap-2 mt-2">
+                    {member.email && (
+                      <a href={`mailto:${member.email}`} title={`Mail ${member.name}`} className="text-softgray-400 hover:text-turquoise-600 transition-colors">
+                        <Mail className="w-4 h-4" />
+                      </a>
+                    )}
+                    {member.phone && (
+                      <a href={`tel:${member.phone}`} title={`Bel ${member.name}`} className="text-softgray-400 hover:text-turquoise-600 transition-colors">
+                        <Phone className="w-4 h-4" />
+                      </a>
+                    )}
+                    {member.whatsapp && (
+                      <a href={`https://wa.me/${member.whatsapp}`} target="_blank" rel="noopener noreferrer" title={`WhatsApp ${member.name}`} className="text-softgray-400 hover:text-turquoise-600 transition-colors">
+                        <MessageCircle className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>

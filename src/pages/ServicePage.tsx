@@ -2,15 +2,60 @@ import { useState, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import Breadcrumbs from '../components/Breadcrumbs';
+import { supabase } from '../lib/supabase';
 
 export default function ServicePage() {
   const navigate = useNavigate();
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => navigate('/bedankt-serviceverzoek'), 800);
+    setError('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get('name') as string,
+      address: formData.get('address') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      order_number: (formData.get('ordernr') as string) || null,
+      category: formData.get('category') as string,
+      description: formData.get('description') as string,
+    };
+
+    const { error: dbError } = await supabase.from('service_submissions').insert(payload);
+
+    if (dbError) {
+      setError('Er ging iets mis bij het versturen. Probeer het opnieuw of neem telefonisch contact op.');
+      setSending(false);
+      return;
+    }
+
+    const files = formData.getAll('photos') as File[];
+    const attachments: { filename: string; content: string }[] = [];
+    for (const file of files) {
+      if (file.size > 0) {
+        const buffer = await file.arrayBuffer();
+        const bytes = new Uint8Array(buffer);
+        let binary = '';
+        for (let i = 0; i < bytes.length; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        attachments.push({ filename: file.name, content: btoa(binary) });
+      }
+    }
+
+    fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-form-notification`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'service', data: payload, attachments }),
+    }).catch(() => {});
+
+    navigate('/bedankt-serviceverzoek');
   };
 
   return (
@@ -103,6 +148,7 @@ export default function ServicePage() {
                   <button type="submit" disabled={sending} className="btn-primary w-full text-center disabled:opacity-50">
                     {sending ? 'Versturen...' : 'Serviceverzoek versturen'}
                   </button>
+                  {error && <p className="text-red-600 text-sm">{error}</p>}
                 </form>
               </div>
             </div>

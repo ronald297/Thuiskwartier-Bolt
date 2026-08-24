@@ -1,33 +1,148 @@
 export interface TeamMember {
   name: string;
   role: string;
-  description: string;
   image: string;
+  email?: string;
+  phone?: string;
+  whatsapp?: string;
 }
 
 export const team: TeamMember[] = [
   {
+    name: 'Simon Weerstand',
+    role: 'Mede-eigenaar',
+    image: '/placeholder-avatar.png',
+    email: 'simon@thuiskwartier.nl',
+    phone: '0527798000',
+  },
+  {
     name: 'Ronald van Biljouw',
     role: 'Mede-eigenaar',
-    description: 'Ronald bewaakt graag het totaalplaatje en zorgt dat keuzes praktisch, mooi en logisch blijven.',
-    image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400',
+    image: '/placeholder-avatar.png',
+    email: 'ronald@thuiskwartier.nl',
+    phone: '0527798083',
+    whatsapp: '31527798083',
   },
   {
-    name: 'Simon van Biljouw',
-    role: 'Mede-eigenaar',
-    description: 'Simon kent elk materiaal en helpt klanten met advies dat verder kijkt dan alleen het product.',
-    image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400',
+    name: 'Nadine Kramer-Kort',
+    role: 'Inkoop & planning',
+    image: '/placeholder-avatar.png',
+    email: 'nadine@thuiskwartier.nl',
+    phone: '0527798081',
+    whatsapp: '31527798081',
   },
   {
-    name: 'Marieke Hoekstra',
-    role: 'Adviseur keukens & badkamers',
-    description: 'Marieke luistert goed en denkt mee over indelingen die passen bij hoe je leeft.',
-    image: 'https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg?auto=compress&cs=tinysrgb&w=400',
+    name: 'Cees van Dijk',
+    role: 'Werkvoorbereider',
+    image: '/placeholder-avatar.png',
+    email: 'cees@thuiskwartier.nl',
+    phone: '0527798082',
+    whatsapp: '31527798082',
   },
   {
-    name: 'Jan de Boer',
-    role: 'Projectbegeleider',
-    description: 'Jan houdt overzicht over de planning en zorgt dat montage soepel verloopt.',
-    image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400',
+    name: 'Hendrik Pasterkamp',
+    role: 'Badkamers & Vloeren',
+    image: '/placeholder-avatar.png',
+    email: 'hendrik@thuiskwartier.nl',
+    phone: '0527798084',
+    whatsapp: '31527798084',
+  },
+  {
+    name: 'Louwrens van Dokkum',
+    role: 'Badkamers & Vloeren',
+    image: '/placeholder-avatar.png',
+    email: 'louwrens@thuiskwartier.nl',
+    phone: '0527798085',
+    whatsapp: '31527798085',
+  },
+  {
+    name: 'Marina Snoek-Romkes',
+    role: 'Badkamers & Vloeren',
+    image: '/placeholder-avatar.png',
+    email: 'marina@thuiswartier.nl',
+    phone: '0527798000',
+  },
+  {
+    name: 'Andries Pasterkamp',
+    role: 'Keukens & Maatwerkkasten',
+    image: '/placeholder-avatar.png',
+    email: 'andries@thuiskwartier.nl',
+    phone: '0527798086',
+    whatsapp: '31527798086',
+  },
+  {
+    name: 'Richard Kley',
+    role: 'Keukens & Maatwerkkasten',
+    image: '/placeholder-avatar.png',
+    email: 'richard@thuiskwartier.nl',
+    phone: '0527798089',
+    whatsapp: '31527798089',
+  },
+  {
+    name: 'Sara Scheffer',
+    role: 'Keukens & Maatwerkkasten',
+    image: '/placeholder-avatar.png',
+    email: 'sara@thuiskwartier.nl',
+    phone: '0527798088',
+    whatsapp: '31527798088',
+  },
+  {
+    name: 'Aileen van den Hoek',
+    role: 'Keukens & Maatwerkkasten',
+    image: '/placeholder-avatar.png',
+    email: 'aileen@thuiskwartier.nl',
+    phone: '0527798087',
+    whatsapp: '31527798087',
+  },
+  {
+    name: 'Alita Zoer-Pasterkamp',
+    role: 'Commercieel medewerker',
+    image: '/placeholder-avatar.png',
+    email: 'alita@thuiskwartier.nl',
+    phone: '0527798000',
+  },
+  {
+    name: 'Maria van Biljouw-Kramer',
+    role: 'Commercieel medewerker',
+    image: '/placeholder-avatar.png',
+    email: 'maria@thuiskwartier.nl',
+    phone: '0527798000',
+  },
+  {
+    name: 'Han Leenman',
+    role: 'Tegelzetter',
+    image: '/placeholder-avatar.png',
+  },
+  {
+    name: 'Jurie Bakker',
+    role: 'Keukenmonteur',
+    image: '/placeholder-avatar.png',
+  },
+  {
+    name: 'Jan Ruizendaal',
+    role: 'Keukenmonteur',
+    image: '/placeholder-avatar.png',
+  },
+  {
+    name: 'Hendrik Verhoeff',
+    role: 'Servicemonteur',
+    image: '/placeholder-avatar.png',
+  },
+  {
+    name: 'Elly Pasterkamp',
+    role: 'Interieurverzorgster',
+    image: '/placeholder-avatar.png',
+  },
+  {
+    name: 'Eljakim Nuijten',
+    role: 'Administratie',
+    image: '/placeholder-avatar.png',
+    email: 'eljakim@thuiskwartier.nl',
+    phone: '0527798000',
+  },
+  {
+    name: 'Loïs Waleson-Nuijten',
+    role: 'Administratie',
+    image: '/placeholder-avatar.png',
   },
 ];

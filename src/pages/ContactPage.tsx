@@ -3,15 +3,43 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 import PageMeta from '../components/PageMeta';
 import Breadcrumbs from '../components/Breadcrumbs';
+import { supabase } from '../lib/supabase';
 
 export default function ContactPage() {
   const navigate = useNavigate();
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => navigate('/bedankt-contact'), 800);
+    setError('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      message: formData.get('message') as string,
+    };
+
+    const { error: dbError } = await supabase.from('contact_submissions').insert(payload);
+
+    if (dbError) {
+      setError('Er ging iets mis bij het versturen. Probeer het opnieuw of neem telefonisch contact op.');
+      setSending(false);
+      return;
+    }
+
+    fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-form-notification`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'contact', data: payload }),
+    }).catch(() => {});
+
+    navigate('/bedankt-contact');
   };
 
   return (
@@ -60,13 +88,13 @@ export default function ContactPage() {
                     <p className="text-softgray-600">info@thuiskwartier.nl</p>
                   </div>
                 </a>
-                <div className="flex items-start gap-3 p-5 bg-white rounded-xl border border-softgray-200">
+                <a href="https://www.google.com/maps/search/?api=1&query=Marsdiep+1,+Urk" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 p-5 bg-white rounded-xl border border-softgray-200 hover:shadow-md transition-shadow">
                   <MapPin className="w-5 h-5 text-turquoise-600 mt-0.5" />
                   <div>
                     <p className="font-medium text-purple-800">Adres</p>
                     <p className="text-softgray-600">Marsdiep 1, Urk</p>
                   </div>
-                </div>
+                </a>
               </div>
 
               <div className="flex items-start gap-3 p-5 bg-softgray-100 rounded-xl">
@@ -136,6 +164,7 @@ export default function ContactPage() {
                 <button type="submit" disabled={sending} className="btn-primary w-full text-center disabled:opacity-50">
                   {sending ? 'Versturen...' : 'Bericht versturen'}
                 </button>
+                {error && <p className="text-red-600 text-sm">{error}</p>}
               </form>
             </div>
           </div>
