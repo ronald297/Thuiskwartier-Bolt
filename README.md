@@ -22,6 +22,8 @@ npm run build
 Required GitHub secret:
 
 - `KUBE_CONFIG_B64` (recommended), or `KUBE_CONFIG` as a plain or base64-encoded kubeconfig.
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
 
 Optional GitHub repository/environment variables:
 
@@ -34,4 +36,4 @@ Optional GitHub repository/environment variables:
 - `INGRESS_TLS_SECRET` (default: `thuiskwartier-tls`)
 - `CERT_MANAGER_CLUSTER_ISSUER` (default: `certmanager-cert-manager`)
 
-The cluster must already contain the `ghcr-pull-secret` image pull secret and have an Nginx ingress controller plus cert-manager available. The workflow does not create application secrets.
+The deployment creates or updates the Kubernetes Secret named `bolt-database`, using the two Supabase GitHub environment secrets. The cluster must already contain the `ghcr-pull-secret` image pull secret and have an Nginx ingress controller plus cert-manager available.

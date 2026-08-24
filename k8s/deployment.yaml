@@ -20,6 +20,9 @@ spec:
         - name: app
           image: ${APP_IMAGE}
           imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: bolt-database
           ports:
             - name: http
               containerPort: 80
