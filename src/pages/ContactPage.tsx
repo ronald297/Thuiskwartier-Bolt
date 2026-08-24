@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 import PageMeta from '../components/PageMeta';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { supabase } from '../lib/supabase';
+import { supabase, supabaseUrl } from '../lib/supabase';
 
 export default function ContactPage() {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export default function ContactPage() {
       return;
     }
 
-    fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-form-notification`, {
+    fetch(`${supabaseUrl}/functions/v1/send-form-notification`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ type: 'contact', data: payload }),
