@@ -10,33 +10,30 @@ interface Props {
 }
 
 export default function CTASection({
-  title = 'Bespreek je plannen in onze showroom',
-  subtitle = 'Of je nu komt voor een ruimte of het complete plaatje, we denken graag met je mee.',
+  title = 'Klaar om je plannen concreet te maken?',
+  subtitle = 'Of je nu komt voor één ruimte of het complete plaatje, we denken graag met je mee.',
   ctaText = 'Plan een showroomafspraak',
   ctaHref = '/afspraak-maken',
   variant = 'default',
 }: Props) {
   return (
     <section
-      className={`relative section-padding py-16 lg:py-24 overflow-hidden ${
-        variant === 'warm' ? 'bg-softgray-100' : 'bg-purple-800'
+      className={`relative section-padding overflow-hidden ${
+        variant === 'warm'
+          ? 'py-16 lg:py-24 bg-softgray-100'
+          : 'py-20 lg:py-28 bg-purple-800'
       }`}
     >
-      {variant === 'default' && (
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 800 300" preserveAspectRatio="none" fill="none">
-          <path d="M-50 200C150 100 350 250 550 150C750 50 900 200 1000 100" stroke="#8ACDD1" strokeWidth="1" fill="none"/>
-        </svg>
-      )}
-      <div className="container-narrow text-center relative">
+      <div className="max-w-3xl mx-auto text-center">
         <h2
-          className={`font-display text-2xl lg:text-4xl font-semibold mb-4 ${
+          className={`font-display text-2xl lg:text-3xl xl:text-4xl font-semibold leading-tight mb-5 ${
             variant === 'warm' ? 'text-purple-800' : 'text-white'
           }`}
         >
           {title}
         </h2>
         <p
-          className={`text-lg mb-8 max-w-xl mx-auto ${
+          className={`text-lg mb-10 max-w-xl mx-auto ${
             variant === 'warm' ? 'text-softgray-600' : 'text-purple-200'
           }`}
         >
@@ -47,11 +44,11 @@ export default function CTASection({
           className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg font-medium transition-all duration-200 ${
             variant === 'warm'
               ? 'bg-purple-800 text-white hover:bg-purple-900'
-              : 'bg-turquoise-300 text-night hover:bg-turquoise-200'
+              : 'bg-white text-purple-800 hover:bg-softgray-100'
           }`}
         >
           {ctaText}
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-5 h-5" />
         </Link>
       </div>
     </section>

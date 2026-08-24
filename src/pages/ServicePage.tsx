@@ -166,6 +166,12 @@ export default function ServicePage() {
                   Twijfel je? Dan kun je natuurlijk ook contact met ons opnemen. We helpen je
                   graag op weg.
                 </p>
+                <Link
+                  to="/service/apparatuur"
+                  className="inline-flex items-center gap-2 mt-4 px-5 py-2.5 bg-purple-800 text-white text-sm font-medium rounded-lg hover:bg-purple-900 transition-colors"
+                >
+                  Bekijk alle servicenummers
+                </Link>
               </div>
 
               <div className="bg-white rounded-2xl border border-softgray-200 p-6 lg:p-8">

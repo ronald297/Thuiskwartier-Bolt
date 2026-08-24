@@ -16,6 +16,7 @@ import InspirationDetailPage from './pages/InspirationDetailPage';
 import AfspraakPage from './pages/AfspraakPage';
 import ContactPage from './pages/ContactPage';
 import ServicePage from './pages/ServicePage';
+import ServiceApparatuurPage from './pages/ServiceApparatuurPage';
 import NieuwbouwPage from './pages/NieuwbouwPage';
 import NieuwbouwUrkPage from './pages/NieuwbouwUrkPage';
 import RegioPage from './pages/RegioPage';
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="/afspraak-maken" element={<AfspraakPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/service" element={<ServicePage />} />
+          <Route path="/service/apparatuur" element={<ServiceApparatuurPage />} />
           <Route path="/nieuwbouw" element={<NieuwbouwPage />} />
           <Route path="/nieuwbouw/urk" element={<NieuwbouwUrkPage />} />
           <Route path="/regio/:slug" element={<RegioPage />} />
