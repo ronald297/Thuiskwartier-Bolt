@@ -18,23 +18,16 @@ INGRESS_TLS_SECRET="${INGRESS_TLS_SECRET:-thuiskwartier-bolt-tls}"
 CERT_MANAGER_CLUSTER_ISSUER="${CERT_MANAGER_CLUSTER_ISSUER:-certmanager-cert-manager}"
 
 tmp_deployment_manifest="$(mktemp)"
-tmp_secret_manifest="$(mktemp)"
 tmp_service_manifest="$(mktemp)"
 tmp_ingress_manifest="$(mktemp)"
 tmp_certificate_manifest="$(mktemp)"
-trap 'rm -f "$tmp_deployment_manifest" "$tmp_secret_manifest" "$tmp_service_manifest" "$tmp_ingress_manifest" "$tmp_certificate_manifest"' EXIT
+trap 'rm -f "$tmp_deployment_manifest" "$tmp_service_manifest" "$tmp_ingress_manifest" "$tmp_certificate_manifest"' EXIT
 
-: "${VITE_SUPABASE_URL:?VITE_SUPABASE_URL is required}"
-: "${VITE_SUPABASE_ANON_KEY:?VITE_SUPABASE_ANON_KEY is required}"
-
-supabase_url_b64="$(printf '%s' "$VITE_SUPABASE_URL" | base64 | tr -d '\n')"
-supabase_anon_key_b64="$(printf '%s' "$VITE_SUPABASE_ANON_KEY" | base64 | tr -d '\n')"
-
-sed \
-  -e "s|\${SUPABASE_URL_B64}|$supabase_url_b64|g" \
-  -e "s|\${SUPABASE_ANON_KEY_B64}|$supabase_anon_key_b64|g" \
-  k8s/secret.yaml > "$tmp_secret_manifest"
-kubectl -n "$K8S_NAMESPACE" apply -f "$tmp_secret_manifest"
+if ! kubectl -n "$K8S_NAMESPACE" get secret bolt-database >/dev/null 2>&1; then
+  echo "Kubernetes Secret bolt-database is required in namespace $K8S_NAMESPACE." >&2
+  echo "Create it in the cluster or provide it through your Kubernetes secret manager." >&2
+  exit 1
+fi
 
 sed \
   -e "s|\${APP_IMAGE}|$APP_IMAGE|g" \

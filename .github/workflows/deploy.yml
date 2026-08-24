@@ -61,8 +61,6 @@ jobs:
       APP_IMAGE: ${{ needs.build.outputs.app_image }}
       KUBE_CONFIG_B64: ${{ secrets.KUBE_CONFIG_B64 }}
       KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-      VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       K8S_NAMESPACE: ${{ vars.K8S_NAMESPACE }}
       K8S_APP_NAME: ${{ vars.K8S_APP_NAME }}
       K8S_DEPLOYMENT_NAME: ${{ vars.K8S_DEPLOYMENT_NAME }}
