@@ -12,7 +12,7 @@ supabase_url="$(json_escape "$VITE_SUPABASE_URL")"
 supabase_anon_key="$(json_escape "$VITE_SUPABASE_ANON_KEY")"
 
 printf '%s\n' \
-  'window.__ENV__ = {' \
+  'window._ENV_ = {' \
   "  VITE_SUPABASE_URL: \"$supabase_url\"," \
   "  VITE_SUPABASE_ANON_KEY: \"$supabase_anon_key\"" \
   '};' > /usr/share/nginx/html/env.js
