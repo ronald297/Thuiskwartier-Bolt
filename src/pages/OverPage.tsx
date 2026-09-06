@@ -84,7 +84,7 @@ export default function OverPage() {
       <section className="section-padding py-12 lg:py-20 bg-white">
         <div className="container-wide">
           <h2 className="font-display text-2xl lg:text-3xl font-semibold text-purple-800 mb-10 text-center">
-            Het team
+            Team Thuiskwartier
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member) => (

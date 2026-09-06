@@ -26,7 +26,7 @@ export default function Footer() {
                   Maak je huis tot een <span className="font-semibold not-italic">thuis</span>.
                 </p>
                 <p className="text-sm text-purple-300 leading-relaxed mt-3">
-                  Keukens, badkamers, PVC-vloeren, tegels en maatwerkkasten. Alles onder een dak in onze showroom in Urk.
+                  Keukens, badkamers, PVC-vloeren, tegels en maatwerkkasten. Alles onder een dak in onze prachtige showroom in Urk.
                 </p>
               </div>
 

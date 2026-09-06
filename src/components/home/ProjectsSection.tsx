@@ -3,30 +3,27 @@ import { ArrowRight } from 'lucide-react';
 
 const projects = [
   {
-    slug: 'keuken-urk',
-    title: 'Keuken in Urk',
+    slug: 'compleet-ingerichte-woning-zeeheldenwijk-urk',
+    title: 'Compleet ingerichte woning Zeeheldenwijk Urk',
     location: 'Urk',
-    categories: ['Keukens'],
-    image:
-      'https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    categories: ['Keukens', 'Badkamers', 'Tegels', 'Maatwerkkasten'],
+    image: '/projecten/compleet-ingerichte-woning-zeeheldenwijk-urk/foto-01.jpeg',
     featured: true,
   },
   {
-    slug: 'badkamer-emmeloord',
-    title: 'Badkamer in Emmeloord',
-    location: 'Emmeloord',
-    categories: ['Badkamers', 'Tegels'],
-    image:
-      'https://images.pexels.com/photos/6585757/pexels-photo-6585757.jpeg?auto=compress&cs=tinysrgb&w=800',
+    slug: 'badkamer-vloeren-tuinkamer-zwembad-woning-urk',
+    title: 'Badkamer, vloeren, tuinkamer en zwembad in woning Urk',
+    location: 'Urk',
+    categories: ['Badkamers', 'Tegels', 'Zwembad'],
+    image: '/projecten/badkamer-vloeren-tuinkamer-zwembad-woning-urk/foto-01-badkamer.jpeg',
     featured: false,
   },
   {
-    slug: 'keuken-en-pvc-vloer-kampen',
-    title: 'Keuken en PVC-vloer in Kampen',
-    location: 'Kampen',
-    categories: ['Keukens', 'PVC-vloeren'],
-    image:
-      'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=800',
+    slug: 'appartement-urk-voorzien-van-tegelvloer-keuken-badkamer-toilet',
+    title: 'Appartement in Urk voorzien van tegelvloer, keuken, badkamer en toilet',
+    location: 'Urk',
+    categories: ['Tegels', 'Wandpanelen', 'Keukens', 'Badkamers', 'Toilet'],
+    image: '/projecten/appartement-urk-voorzien-van-tegelvloer-keuken-badkamer-toilet/foto-01-vloer.jpeg',
     featured: false,
   },
 ];

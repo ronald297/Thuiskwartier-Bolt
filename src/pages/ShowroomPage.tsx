@@ -66,7 +66,7 @@ export default function ShowroomPage() {
             <div className="space-y-4">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.pexels.com/photos/6444260/pexels-photo-6444260.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="/projecten/compleet-ingerichte-woning-zeeheldenwijk-urk/showroom-in-urk.jpg"
                   alt="Materialen en tegels in de showroom"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -98,11 +98,17 @@ export default function ShowroomPage() {
           <h2 className="font-display text-2xl font-semibold text-purple-800 mb-6">
             Virtuele rondleiding
           </h2>
-          <div className="aspect-video rounded-2xl overflow-hidden bg-softgray-200 flex items-center justify-center">
-            <div className="text-center p-8">
-              <p className="text-softgray-500 mb-2">Google 360 rondleiding</p>
-              <p className="text-sm text-softgray-400">De virtuele tour wordt hier ingeladen.</p>
-            </div>
+          <div className="aspect-video rounded-2xl overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!4v1788719469417!6m8!1m7!1sCAoSHENJQUJJaEFhS3g3LWhobjRLakF4ZFJDOXRIWU8.!2m2!1d52.65542166768734!2d5.614453591963541!3f359.91643077175127!4f-12.653896402186476!5f0.531170716970345"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Virtuele rondleiding showroom Thuiskwartier"
+            />
           </div>
         </div>
       </section>

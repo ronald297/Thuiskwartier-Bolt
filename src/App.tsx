@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
@@ -47,6 +47,7 @@ export default function App() {
           <Route path="/inspiratie" element={<InspiratiePage />} />
           <Route path="/inspiratie/:slug" element={<InspirationDetailPage />} />
           <Route path="/afspraak-maken" element={<AfspraakPage />} />
+          <Route path="/afspraak" element={<Navigate to="/afspraak-maken" replace />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/service" element={<ServicePage />} />
           <Route path="/service/apparatuur" element={<ServiceApparatuurPage />} />

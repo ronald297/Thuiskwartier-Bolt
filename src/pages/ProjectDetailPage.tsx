@@ -58,21 +58,27 @@ export default function ProjectDetailPage() {
               <h2 className="font-display text-xl lg:text-2xl font-semibold text-purple-800 mb-4">
                 De wens
               </h2>
-              <p className="text-softgray-600 leading-relaxed">{project.clientWish}</p>
+              <div className="text-softgray-600 leading-relaxed space-y-4">
+                {project.clientWish.split('\n\n').map((p, i) => <p key={i}>{p}</p>)}
+              </div>
             </div>
 
             <div>
               <h2 className="font-display text-xl lg:text-2xl font-semibold text-purple-800 mb-4">
                 De keuzes
               </h2>
-              <p className="text-softgray-600 leading-relaxed">{project.choices}</p>
+              <div className="text-softgray-600 leading-relaxed space-y-4">
+                {project.choices.split('\n\n').map((p, i) => <p key={i}>{p}</p>)}
+              </div>
             </div>
 
             <div>
               <h2 className="font-display text-xl lg:text-2xl font-semibold text-purple-800 mb-4">
                 Het resultaat
               </h2>
-              <p className="text-softgray-600 leading-relaxed">{project.result}</p>
+              <div className="text-softgray-600 leading-relaxed space-y-4">
+                {project.result.split('\n\n').map((p, i) => <p key={i}>{p}</p>)}
+              </div>
             </div>
 
             {project.brands && project.brands.length > 0 && (

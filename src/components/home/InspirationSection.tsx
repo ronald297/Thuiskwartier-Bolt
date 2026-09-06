@@ -7,8 +7,7 @@ const articles = [
     title: 'Zo bereid je je showroomafspraak goed voor',
     intro:
       'Een goede voorbereiding maakt je showroombezoek een stuk waardevoller. We delen een paar praktische tips.',
-    image:
-      'https://images.pexels.com/photos/7031407/pexels-photo-7031407.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/images/inspiration/gesprek-in-showroom.png',
     readTime: '5 min',
   },
   {
@@ -16,8 +15,7 @@ const articles = [
     title: 'Keuken, badkamer en vloer op elkaar afstemmen',
     intro:
       'Als je meerdere ruimtes tegelijk aanpakt, wil je dat het totaalplaatje klopt.',
-    image:
-      'https://images.pexels.com/photos/6444260/pexels-photo-6444260.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/keuken-badkamer-vloer-op-elkaar-afstemmen.png',
     readTime: '6 min',
   },
   {
@@ -25,8 +23,7 @@ const articles = [
     title: 'PVC of tegels: wat past beter bij jouw woning?',
     intro:
       'Beide opties hebben sterke punten. We helpen je de juiste keuze maken.',
-    image:
-      'https://images.pexels.com/photos/6969866/pexels-photo-6969866.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/pvc-of-tegels.png',
     readTime: '7 min',
   },
 ];
