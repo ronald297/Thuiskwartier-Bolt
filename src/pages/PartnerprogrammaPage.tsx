@@ -1,18 +1,47 @@
 import { useState, type FormEvent } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import PageMeta from '../components/PageMeta';
 import Breadcrumbs from '../components/Breadcrumbs';
+import { supabase, supabaseUrl } from '../lib/supabase';
 
 export default function PartnerprogrammaPage() {
   const navigate = useNavigate();
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => navigate('/bedankt-partneraanvraag'), 800);
+    setError('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get('name') as string,
+      company: formData.get('company') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      type: formData.get('type') as string,
+      message: (formData.get('message') as string) || null,
+    };
+
+    const { error: dbError } = await supabase.from('partner_submissions').insert(payload);
+
+    if (dbError) {
+      setError('Er ging iets mis bij het versturen. Probeer het opnieuw of neem telefonisch contact op.');
+      setSending(false);
+      return;
+    }
+
+    fetch(`${supabaseUrl}/functions/v1/send-form-notification`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'partner', data: payload }),
+    }).catch(() => {});
+
+    navigate('/bedankt-partneraanvraag');
   };
 
   return (
@@ -162,6 +191,7 @@ export default function PartnerprogrammaPage() {
                 >
                   {sending ? 'Versturen...' : 'Aanvraag versturen'}
                 </button>
+                {error && <p className="text-red-600 text-sm">{error}</p>}
               </form>
             </div>
           </div>

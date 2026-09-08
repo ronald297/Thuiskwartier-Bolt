@@ -6,7 +6,7 @@ export default function HeroSection() {
     <section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center">
       {/* Background image */}
       <img
-        src="https://images.pexels.com/photos/6908562/pexels-photo-6908562.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        src="/images/homepage-hero.jpeg"
         alt="Stijlvol interieur met warme materialen"
         className="absolute inset-0 h-full w-full object-cover"
         loading="eager"

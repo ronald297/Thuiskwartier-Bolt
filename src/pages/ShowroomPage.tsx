@@ -66,7 +66,7 @@ export default function ShowroomPage() {
             <div className="space-y-4">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden">
                 <img
-                  src="/projecten/compleet-ingerichte-woning-zeeheldenwijk-urk/showroom-in-urk.jpg"
+                  src="/showroom-in-urk.jpg"
                   alt="Materialen en tegels in de showroom"
                   className="w-full h-full object-cover"
                   loading="lazy"
