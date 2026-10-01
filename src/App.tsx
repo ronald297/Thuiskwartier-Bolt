@@ -17,6 +17,7 @@ import AfspraakPage from './pages/AfspraakPage';
 import ContactPage from './pages/ContactPage';
 import ServicePage from './pages/ServicePage';
 import ServiceApparatuurPage from './pages/ServiceApparatuurPage';
+import KeukenrenovatiePage from './pages/KeukenrenovatiePage';
 import NieuwbouwPage from './pages/NieuwbouwPage';
 import NieuwbouwUrkPage from './pages/NieuwbouwUrkPage';
 import RegioPage from './pages/RegioPage';
@@ -34,6 +35,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/keukens" element={<ProductPage />} />
+          <Route path="/keukens/keukenrenovatie" element={<KeukenrenovatiePage />} />
           <Route path="/badkamers" element={<ProductPage />} />
           <Route path="/pvc-vloeren" element={<ProductPage />} />
           <Route path="/tegels" element={<ProductPage />} />
