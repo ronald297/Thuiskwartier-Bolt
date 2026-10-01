@@ -51,6 +51,7 @@ export const productPages: Record<string, ProductPage> = {
       },
     ],
     relatedLinks: [
+      { label: 'Keukenrenovatie', href: '/keukens/keukenrenovatie' },
       { label: 'PVC-vloeren', href: '/pvc-vloeren' },
       { label: 'Tegels', href: '/tegels' },
       { label: 'Maatwerkkasten', href: '/maatwerkkasten' },

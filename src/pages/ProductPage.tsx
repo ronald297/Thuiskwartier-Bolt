@@ -107,6 +107,30 @@ export default function ProductPage() {
         </section>
       )}
 
+      {/* Keukenrenovatie callout (only on keukens page) */}
+      {slug === 'keukens' && (
+        <section className="section-padding py-12 lg:py-16 bg-softgray-100">
+          <div className="container-wide">
+            <div className="bg-white rounded-2xl p-6 lg:p-8 border border-softgray-200 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
+              <div className="flex-1">
+                <h2 className="font-display text-xl lg:text-2xl font-semibold text-purple-800 mb-2">
+                  Bestaande keuken vernieuwen?
+                </h2>
+                <p className="text-softgray-600 leading-relaxed">
+                  Is de basis van je keuken nog goed, maar zijn de fronten, het werkblad of de apparatuur toe aan vervanging? Bekijk de mogelijkheden van keukenrenovatie.
+                </p>
+              </div>
+              <Link
+                to="/keukens/keukenrenovatie"
+                className="btn-primary inline-flex items-center gap-2 whitespace-nowrap self-start"
+              >
+                Meer over keukenrenovatie <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Reviews */}
       <section className="section-padding py-12 lg:py-16 bg-softgray-100">
         <div className="container-wide">
